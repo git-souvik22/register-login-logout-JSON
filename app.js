@@ -9,7 +9,7 @@ fs.writeFileSync(userDataBase, JSON.stringify([]));
 app.use(bodyParser.json());
 
 app.get("/data", (req, res) => {
-  const userList = fs.readFileSync(userDataBase);
+  const userList = fs.readFileSync(userDataBase, "utf8");
   res.status(200).json({ users: userList });
 });
 
