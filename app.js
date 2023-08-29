@@ -68,6 +68,18 @@ app.post("/logout", (req, res) => {
   res.status(401).json({ message: "User not found" });
 });
 
+app.delete("/delete-account", (req, res) => {
+  const { username } = req.body;
+
+  const userData = JSON.parse(fs.readFileSync(userDataBase));
+
+  const user = userData.filter((user) => user.username !== username);
+
+  fs.writeFileSync(userDataBase, JSON.stringify(user));
+
+  res.status(202).json({ message: "Account successfully deleted" });
+});
+
 const PORT = 5000;
 app.listen(PORT, () => {
   console.log(`Server is running on port : ${PORT}`);
