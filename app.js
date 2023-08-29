@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 
 app.get("/data", (req, res) => {
   const userList = fs.readFileSync(userDataBase, "utf8");
-  res.status(200).json({ users: userList });
+  res.status(200).send({ users: userList });
 });
 
 app.post("/register", (req, res) => {
