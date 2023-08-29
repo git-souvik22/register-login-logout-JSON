@@ -4,7 +4,6 @@ const bodyParser = require("body-parser");
 const fs = require("fs");
 
 const userDataBase = "./JSON/user.json";
-fs.writeFileSync(userDataBase, JSON.stringify([]));
 
 app.use(bodyParser.json());
 
