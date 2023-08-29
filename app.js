@@ -4,9 +4,13 @@ const bodyParser = require("body-parser");
 const fs = require("fs");
 
 const userDataBase = "./JSON/user.json";
-fs.writeFileSync(userDataBase, JSON.stringify([]));
 
 app.use(bodyParser.json());
+
+app.get("/data", (req, res) => {
+  const userList = fs.writeFileSync(userDataBase, JSON.stringify([]));
+  res.status(200).json({ users: userList });
+});
 
 app.post("/register", (req, res) => {
   const { username, password } = req.body;
